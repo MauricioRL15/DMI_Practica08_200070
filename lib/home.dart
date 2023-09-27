@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dmi_practica08_200070/common/HttpHandler.dart';
+// import 'package:dmi_practica08_200070/common/HttpHandler.dart';
+import 'package:dmi_practica08_200070/media_list.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key});
@@ -9,23 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  @override
-  void initState() {
-    super.initState();
-    _loadJson();
-  }
-
-  _loadJson() async {
-    dynamic data = await HttpHandler()
-        .fetchMovies(); // Cambiado el tipo de 'data' a 'dynamic'
-    if (data is String) {
-      print(data);
-    } else {
-      // Manejar el caso en que 'data' no sea de tipo String
-      print('El tipo de dato no es String.');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +51,9 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      body: Container(), // Reemplaza PageView con el widget que desees mostrar.
+      body: new PageView(
+        children: <Widget>[new MediaList()],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: _obtenerIconos(),
       ),
@@ -81,7 +67,7 @@ class _HomeState extends State<Home> {
       BottomNavigationBarItem(
           icon: Icon(Icons.update_rounded), label: "Próximamente"),
       BottomNavigationBarItem(
-          icon: Icon(Icons.star_rounded), label: "Favoritos"),
+          icon: Icon(Icons.star_rounded), label: "Mejor Valoradas"),
     ];
   }
 }

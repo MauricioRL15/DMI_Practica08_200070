@@ -1,3 +1,5 @@
+import 'package:dmi_practica08_200070/common/Util.dart';
+
 class Media {
   int id;
   double voteAverage;
@@ -7,6 +9,8 @@ class Media {
   String overview;
   String releaseDate;
   List<dynamic> genreIds;
+
+  String getPosterUrl() => getMediumPictureUrl(posterPath);
 
   factory Media(Map jsonMap) {
     try {
@@ -23,6 +27,16 @@ class Media {
         posterPath = json["poster_path"] ?? "",
         backdropPath = json["backdrop_path"] ?? "",
         overview = json["overview"],
-        releaseDate = json["release"],
+        releaseDate = json["release_date"],
         genreIds = json["genre_ids"].toList();
+
+  // Media.deserialize(Map json)
+  //     : id = json["id"].toInt(),
+  //       voteAverage = json["vote_average"].toDouble(),
+  //       title = json["title"],
+  //       posterPath = json["poster_path"] ?? "",
+  //       backdropPath = json["backdrop_path"] ?? "",
+  //       overview = json["overview"],
+  //       releaseDate = json["release_date"], // Corrected field name
+  //       genreIds = List<int>.from(json["genre_ids"]);
 }
